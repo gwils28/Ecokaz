@@ -13,4 +13,4 @@ Claude never runs `git commit` or `git push` in this repo: the maintainer must b
    - Body (optional): why the change was made, not what it does line by line.
    - No `Co-Authored-By` trailer, no "Generated with" line.
 5. Give the exact command for the maintainer, e.g. `git commit -m "feat(sources): import Enedis CSV exports" -m "<body>"`.
-6. For a PR, propose a title (same format) and a body with: Summary, How it was tested (paste the real output), and Deviations from the plan (if any, also add them to `PLAN.md` §8 "Ce que je corrige par rapport au plan").
+6. For a PR, propose a title (same format) and a body with: Summary, How it was tested (paste the real output), and Deviations from the plan (if any, also add them to `PLAN.md` §8 "Corrections to the plan").

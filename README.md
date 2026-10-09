@@ -1,27 +1,27 @@
 # Ecokaz
 
-Le copilote énergie et carbone du foyer : consommation réelle d'électricité, de gaz, d'eau et de carburant, en unités, en euros et en kgCO₂e, avec un coach IA qui explique et propose des actions.
+The household energy and carbon copilot: actual electricity, gas, water and fuel use, in units, euros and kgCO₂e, with an AI coach that explains and suggests actions.
 
-> **Statut : V0 en cours (lot 0, socle).** Usage personnel d'abord, France métropolitaine. Voir [`PLAN.md`](PLAN.md).
+> **Status: V0 in progress (lot 0, foundation, done).** Personal use first, mainland France. See [`PLAN.md`](PLAN.md).
 
-## Démarrer
+## Getting started
 
 ```bash
-cp .env.example .env      # puis changer les valeurs
-make setup                # dépendances + hook commit-msg
+cp .env.example .env      # then change the values
+make setup                # dependencies + commit-msg hook
 make check                # lint, types, tests
-make dev-api              # API sur :8001
-make dev-web              # interface sur :5174
-make up                   # stack complète sur https://localhost:8453
+make dev-api              # API on :8001
+make dev-web              # UI on :5174
+make up                   # full stack on https://localhost:8453
 ```
 
-Prérequis : Docker, [uv](https://docs.astral.sh/uv/), Node (via fnm) et pnpm.
+Requirements: Docker, [uv](https://docs.astral.sh/uv/), Node (via fnm) and pnpm.
 
 ## Stack
 
 FastAPI · SQLAlchemy · Alembic · PostgreSQL 17 · React · TypeScript · Vite · Tailwind · Caddy · Docker Compose.
 
-## Sources des données et des facteurs
+## Data and factor sources
 
-- Électricité : Enedis, via [Conso API](https://conso.boris.sh/) ou un export CSV de l'espace client.
-- Facteurs d'émission : ADEME, Base Empreinte. Chaque valeur est versionnée avec sa source.
+- Electricity: Enedis, through [Conso API](https://conso.boris.sh/) or a CSV export from the customer area.
+- Emission factors: ADEME, Base Empreinte. Every value is versioned with its source.
