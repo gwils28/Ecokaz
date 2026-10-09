@@ -1,0 +1,33 @@
+{
+	# Ports match the host mapping in docker-compose.yml.
+	http_port 8090
+	https_port 8453
+	auto_https disable_redirects
+}
+
+# Explicit redirect: the automatic one drops the non-standard port.
+http://{$ECOKAZ_HOST:localhost}:8090 {
+	redir https://{host}:8453{uri} permanent
+}
+
+https://{$ECOKAZ_HOST:localhost}:8453 {
+	encode zstd gzip
+
+	handle /api/* {
+		reverse_proxy api:8000
+	}
+
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		# 0 on localhost: HSTS would otherwise force https on every localhost port (Vite dev server).
+		Strict-Transport-Security "max-age={$ECOKAZ_HSTS_MAX_AGE:0}"
+		X-Content-Type-Options nosniff
+		Referrer-Policy same-origin
+		X-Frame-Options SAMEORIGIN
+	}
+}
