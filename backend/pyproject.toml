@@ -1,0 +1,51 @@
+[project]
+name = "ecokaz-backend"
+version = "0.0.0"
+description = "Ecokaz backend workspace"
+requires-python = ">=3.13,<3.14"
+dependencies = ["ecokaz-core", "ecokaz-api"]
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.13.1",
+    "hypothesis>=6.140",
+    "mypy>=1.18",
+    "pytest>=8.4",
+    "pytest-cov>=7.0",
+    "ruff>=0.14",
+    "testcontainers[postgres]>=4.10",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+ecokaz-core = { workspace = true }
+ecokaz-api = { workspace = true }
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "RUF", "N", "S", "DTZ", "PT", "TID"]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.mypy]
+strict = true
+python_version = "3.13"
+packages = ["ecokaz_core", "ecokaz_api"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--strict-markers", "--import-mode=importlib"]
+
+[tool.alembic]
+script_location = "ecokaz_api:migrations"
