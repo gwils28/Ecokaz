@@ -1,0 +1,36 @@
+# Real household data (meter exports, readings) and backups: never committed
+/data/*
+!/data/.gitkeep
+!backend/tests/fixtures/**
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Claude Code local overrides
+.claude/settings.local.json
+
+# Private product spec (business model, roadmap): kept local
+/Ecokaz_spec.md
